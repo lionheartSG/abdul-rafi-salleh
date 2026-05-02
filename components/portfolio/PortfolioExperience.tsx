@@ -72,10 +72,10 @@ function ExperienceInner() {
       <header className="pointer-events-none absolute left-0 top-0 z-20 flex w-full items-start justify-between p-6 pt-20 md:p-8 md:pt-20">
         <div className="pointer-events-auto max-w-md rounded-lg border border-[color-mix(in_srgb,var(--color-accent-cyan)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-surface-glass)_75%,transparent)] px-4 py-3 backdrop-blur-md">
           <p className="font-[family-name:var(--font-label)] text-[0.65rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent-cyan)]">
-            Architect OS
+            Portfolio
           </p>
           <h1 className="mt-0.5 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[var(--color-on-surface)] md:text-xl">
-            Technical Lead · Node network
+            Operations × Technology
           </h1>
           <p className="mt-1 font-[family-name:var(--font-body)] text-xs text-[var(--color-on-surface-muted)]">
             Click nodes to explore · Drag to orbit · Scroll to zoom
@@ -86,7 +86,7 @@ function ExperienceInner() {
       <footer className="pointer-events-none absolute bottom-0 left-0 z-20 flex w-full items-center justify-between p-4">
         <div className="pointer-events-auto flex items-center gap-4">
           <a
-            href="https://github.com"
+            href="https://github.com/lionheartSG"
             target="_blank"
             rel="noopener noreferrer"
             className="font-[family-name:var(--font-body)] text-[0.65rem] text-[var(--color-on-surface-muted)] transition-colors hover:text-[var(--color-accent-cyan)]"
@@ -95,7 +95,7 @@ function ExperienceInner() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/arbms/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-[family-name:var(--font-body)] text-[0.65rem] text-[var(--color-on-surface-muted)] transition-colors hover:text-[var(--color-accent-cyan)]"
@@ -104,7 +104,7 @@ function ExperienceInner() {
             LinkedIn
           </a>
           <a
-            href="mailto:hello@example.com"
+            href="mailto:abdul.rafi.mdsalleh@hotmail.com"
             className="font-[family-name:var(--font-body)] text-[0.65rem] text-[var(--color-on-surface-muted)] transition-colors hover:text-[var(--color-accent-cyan)]"
             aria-label="Email"
           >
@@ -112,7 +112,12 @@ function ExperienceInner() {
           </a>
         </div>
         <div className="font-[family-name:var(--font-body)] text-[0.65rem] text-[var(--color-on-surface-muted)]">
-          Nexus build · 27/04/2026 SGT
+          Created by @Abdul Rafi{" "}
+          {new Date().toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}
         </div>
       </footer>
     </div>

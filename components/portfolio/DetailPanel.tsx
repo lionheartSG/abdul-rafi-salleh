@@ -112,6 +112,29 @@ function ContentCard({ item }: { item: ContentItem }) {
         </div>
       );
 
+    case "skills":
+      return (
+        <div>
+          {item.categories.map((cat) => (
+            <div key={cat.label} className="mb-4 last:mb-0">
+              <h5 className="mb-2 font-[family-name:var(--font-label)] text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[var(--color-accent-cyan)]">
+                {cat.label}
+              </h5>
+              <div className="flex flex-wrap gap-1.5">
+                {cat.items.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-[color-mix(in_srgb,var(--color-accent-cyan)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-accent-cyan)_10%,transparent)] px-3 py-1 font-[family-name:var(--font-body)] text-[0.7rem] text-[var(--color-on-surface)]"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+
     default:
       return null;
   }
@@ -241,7 +264,7 @@ export function DetailPanel() {
                   {node.id === "contact" ? (
                     <div className="mt-6 flex flex-wrap gap-3">
                       <a
-                        href="https://github.com"
+                        href="https://github.com/lionheartSG"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="rounded-lg border border-[color-mix(in_srgb,var(--color-accent-cyan)_22%,transparent)] px-4 py-2 font-[family-name:var(--font-body)] text-xs text-[var(--color-on-surface-muted)] transition-all hover:border-[var(--color-accent-cyan)] hover:text-[var(--color-accent-cyan)] hover:shadow-[0_0_16px_color-mix(in_srgb,var(--color-accent-cyan)_15%,transparent)]"
@@ -249,7 +272,7 @@ export function DetailPanel() {
                         GitHub
                       </a>
                       <a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/in/arbms/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="rounded-lg border border-[color-mix(in_srgb,var(--color-accent-cyan)_22%,transparent)] px-4 py-2 font-[family-name:var(--font-body)] text-xs text-[var(--color-on-surface-muted)] transition-all hover:border-[var(--color-accent-cyan)] hover:text-[var(--color-accent-cyan)] hover:shadow-[0_0_16px_color-mix(in_srgb,var(--color-accent-cyan)_15%,transparent)]"
@@ -257,7 +280,7 @@ export function DetailPanel() {
                         LinkedIn
                       </a>
                       <a
-                        href="mailto:hello@example.com"
+                        href="mailto:abdul.rafi.mdsalleh@hotmail.com"
                         className="rounded-lg border border-[color-mix(in_srgb,var(--color-accent-cyan)_22%,transparent)] px-4 py-2 font-[family-name:var(--font-body)] text-xs text-[var(--color-on-surface-muted)] transition-all hover:border-[var(--color-accent-cyan)] hover:text-[var(--color-accent-cyan)] hover:shadow-[0_0_16px_color-mix(in_srgb,var(--color-accent-cyan)_15%,transparent)]"
                       >
                         Email
@@ -313,6 +336,18 @@ export function DetailPanel() {
                         </div>
                       ) : null}
 
+                      {/* Skills */}
+                      {node.content.filter((c) => c.kind === "skills").length >
+                      0 ? (
+                        <div className="rounded-lg border border-[color-mix(in_srgb,var(--color-accent-cyan)_18%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_60%,transparent)] p-4">
+                          {node.content
+                            .filter((c) => c.kind === "skills")
+                            .map((item) => (
+                              <ContentCard key="skills-overview" item={item} />
+                            ))}
+                        </div>
+                      ) : null}
+
                       {/* Journey / Case Study */}
                       {node.content.filter((c) => c.kind === "journey").length >
                       0 ? (
@@ -354,6 +389,21 @@ export function DetailPanel() {
                         </li>
                       ))}
                     </ul>
+                  ) : null}
+
+                  {node.content && node.content.length > 0 ? (
+                    <div className="mt-6 space-y-4">
+                      {node.content.map((item) => (
+                        <ContentCard
+                          key={
+                            item.kind === "skills"
+                              ? "skills-overview"
+                              : `hub-${item.kind}`
+                          }
+                          item={item}
+                        />
+                      ))}
+                    </div>
                   ) : null}
                 </>
               )}

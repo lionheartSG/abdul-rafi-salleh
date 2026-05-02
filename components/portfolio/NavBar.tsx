@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "motion/react";
-import { CENTER_NODE_ID, portfolioNodes } from "@/lib/portfolioData";
+import { CENTER_NODE_ID } from "@/lib/portfolioData";
 import { usePortfolioHover } from "./portfolio-hover-context";
 
 const navLinks = [
   { label: "About", nodeId: CENTER_NODE_ID },
-  { label: "Skills", nodeId: "fullstack" },
-  { label: "Projects", nodeId: "projects" },
-  { label: "Contact", nodeId: "contact" },
+  { label: "Skills", nodeId: CENTER_NODE_ID },
+  { label: "Work", nodeId: "systems" },
+  { label: "Journey", nodeId: "digitalisation" },
+  { label: "Security Ops", nodeId: "ops" },
 ];
 
 export function NavBar() {
@@ -24,8 +25,6 @@ export function NavBar() {
     setFocusedNodeId(null);
   };
 
-  const centerNode = portfolioNodes.find((n) => n.isCenter);
-
   return (
     <motion.nav
       initial={{ y: -20, opacity: 0 }}
@@ -38,12 +37,12 @@ export function NavBar() {
         onClick={handleReset}
         className="font-[family-name:var(--font-display)] text-sm font-semibold tracking-tight text-[var(--color-on-surface)] transition-colors hover:text-[var(--color-accent-cyan)]"
       >
-        {centerNode?.shortLabel ?? "Home"}
+        Abdul Rafi Salleh
       </button>
 
       <ul className="flex items-center gap-6">
         {navLinks.map(({ label, nodeId }) => (
-          <li key={nodeId}>
+          <li key={label}>
             <button
               type="button"
               onClick={() => handleNavClick(nodeId)}

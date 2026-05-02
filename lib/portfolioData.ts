@@ -24,6 +24,13 @@ export type ContentItem =
       trend?: "up" | "down" | "flat";
     }
   | {
+      kind: "skills";
+      categories: {
+        label: string;
+        items: string[];
+      }[];
+    }
+  | {
       kind: "journey";
       title: string;
       sections: {
@@ -51,8 +58,8 @@ export const CENTER_NODE_ID = "self";
 export const portfolioNodes: PortfolioNode[] = [
   {
     id: CENTER_NODE_ID,
-    label: "Tech Lead",
-    shortLabel: "Ops-Tech Integrator",
+    label: "Abdul Rafi Salleh",
+    shortLabel: "Tech Lead & Ops-Tech Integrator",
     description:
       "Tech Lead with over 20 years of experience across law enforcement and private sector operations. I specialise in translating complex ground realities into practical digital systems that drive real adoption and operational impact.",
     chips: ["Operations", "Security", "Tech", "Digitalisation"],
@@ -60,13 +67,59 @@ export const portfolioNodes: PortfolioNode[] = [
     isCenter: true,
     accent: "cyan",
     avatarSrc: "/rafi.png",
+    content: [
+      {
+        kind: "skills",
+        categories: [
+          {
+            label: "Technical",
+            items: [
+              "Next.js",
+              "React",
+              "TypeScript",
+              "Node.js",
+              "Postgres",
+              "Prisma",
+              "REST APIs",
+              "Fullstack Development",
+              "System Design",
+              "Automation",
+            ],
+          },
+          {
+            label: "Operations",
+            items: [
+              "Aviation Security",
+              "Incident Management",
+              "Compliance & Audits",
+              "Manpower Planning",
+              "SOP Development",
+              "Stakeholder Management",
+              "Crisis Response",
+            ],
+          },
+          {
+            label: "Leadership",
+            items: [
+              "Change Management",
+              "Digital Transformation",
+              "Team Training",
+              "Cross-Functional Execution",
+              "Strategy & Roadmapping",
+              "QA / QC",
+              "R&D & IoT Exploration",
+            ],
+          },
+        ],
+      },
+    ],
   },
 
   // 🔴 OPS (FULL HISTORY)
   {
     id: "ops",
     label: "Security Operations",
-    shortLabel: "Operations & Policy",
+    shortLabel: "Security Operations & Policy",
     description:
       "Deep operational experience across aviation security and private sector, covering policy, compliance, incident response, and manpower operations.",
     chips: ["Aviation Security", "Incident Mgmt", "Compliance", "Manpower"],
@@ -103,7 +156,7 @@ export const portfolioNodes: PortfolioNode[] = [
         kind: "timeline",
         title: "Operations Executive",
         subtitle: "Private Security Sector",
-        period: "2024 – Present",
+        period: "2024 – 2026",
         description:
           "Manage day-to-day operations across 46 sites, overseeing manpower deployment, incident response, and operational standards.",
       },
@@ -164,7 +217,7 @@ export const portfolioNodes: PortfolioNode[] = [
   {
     id: "digitalisation",
     label: "Digital Transformation",
-    shortLabel: "Digitalise",
+    shortLabel: "Digital Transformation in Private Security Industry",
     description:
       "Transformed traditional paper-based operations into structured digital workflows across the organisation.",
     chips: ["Workflow Design", "Automation", "Change"],
@@ -262,7 +315,7 @@ export const portfolioNodes: PortfolioNode[] = [
     position: [-2.2, -0.9, -0.7],
     accent: "purple",
     caption:
-      "People > system. Servant leadership is about serving the needs of the people, not the other way around.",
+      "People > System. Servant leadership is about serving the needs of the people, not the other way around.",
     content: [
       {
         kind: "timeline",
@@ -331,6 +384,46 @@ export const portfolioNodes: PortfolioNode[] = [
         period: "Ongoing",
         description:
           "Exploring video analytics integration to enhance operational awareness and automation.",
+      },
+    ],
+  },
+  {
+    id: "law_enforcement",
+    label: "Law Enforcement",
+    shortLabel: "Law Enforcement (SPF)",
+    description:
+      "17 years in Singapore Police Force covering frontline policing, investigations, and aviation security. Experienced in crime operations, regulatory frameworks, and leadership in high-stakes environments.",
+    chips: ["Policing", "Investigations", "Leadership", "Security"],
+    position: [2.4, -0.2, 1.2], // adjust if clashes with others
+    accent: "purple",
+    caption:
+      "Where discipline, judgement, and leadership were forged in the Singapore Police Force. Courage, Loyalty, Integrity, and Fairness remains core values.",
+    content: [
+      {
+        kind: "timeline",
+        title: "Anti-Crime Task Force Officer (Assistant Officer-in-Charge)",
+        subtitle: "Singapore Police Force",
+        period: "Oct 2010 – Oct 2013",
+        description:
+          "Led investigations into crime cases, identifying persons of interest through evidence gathering and analysis. Prepared investigation reports for prosecution and managed crime data tracking. Led joint operations to apprehend suspects and ensured compliance with rules of engagement. Developed in-house case management and crime analytics systems, and contributed to organisational initiatives including leadership development and job redesign. Received multiple commendations including Higher Commander’s and Commissioner of Police awards.",
+      },
+      {
+        kind: "timeline",
+        title: "Patrol Officer (Station Sergeant / Group Leader)",
+        subtitle: "Singapore Police Force",
+        period: "Apr 2005 – Oct 2010",
+        description:
+          "Responded to public incidents and ensured case resolution. Supervised a team of over 60 officers and trained new officers including NSFs. Improved deployment planning efficiency by 80% through administrative changes. Conducted community engagement and crime prevention outreach. Appointed as unit IT in-charge.",
+      },
+      {
+        kind: "metric",
+        label: "Commendations",
+        value: "30+ Awards",
+      },
+      {
+        kind: "metric",
+        label: "National Day Award 2022",
+        value: "Pingat Berkebolehan",
       },
     ],
   },
