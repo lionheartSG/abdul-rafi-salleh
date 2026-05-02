@@ -81,6 +81,37 @@ function ContentCard({ item }: { item: ContentItem }) {
         </div>
       );
 
+    case "journey":
+      return (
+        <div className="overflow-hidden rounded-lg border border-[color-mix(in_srgb,var(--color-accent-cyan)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-surface)_60%,transparent)]">
+          <div className="border-b border-[color-mix(in_srgb,var(--color-accent-cyan)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-accent-cyan)_6%,transparent)] px-4 py-3">
+            <p className="font-[family-name:var(--font-label)] text-[0.6rem] font-medium uppercase tracking-[0.12em] text-[var(--color-accent-cyan)]">
+              Case Study
+            </p>
+            <h4 className="mt-0.5 font-[family-name:var(--font-display)] text-base font-semibold tracking-tight text-[var(--color-on-surface)]">
+              {item.title}
+            </h4>
+          </div>
+          <div className="divide-y divide-[color-mix(in_srgb,var(--color-accent-cyan)_8%,transparent)] p-4">
+            {item.sections.map((section, i) => (
+              <div key={section.label} className={i === 0 ? "pb-3" : "py-3"}>
+                <div className="flex items-center gap-2">
+                  <span className="flex-shrink-0 font-[family-name:var(--font-geist-mono)] text-[0.6rem] text-[var(--color-accent-cyan)]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h5 className="font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-on-surface)]">
+                    {section.label}
+                  </h5>
+                </div>
+                <p className="mt-1.5 font-[family-name:var(--font-body)] text-xs leading-relaxed text-[var(--color-on-surface-muted)]">
+                  {section.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
     default:
       return null;
   }
@@ -126,7 +157,7 @@ export function DetailPanel() {
             animate={{ y: "0%", opacity: 1 }}
             exit={{ y: "40%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-x-4 bottom-6 z-40 mx-auto max-h-[65vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-[color-mix(in_srgb,var(--color-accent-cyan)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-surface-glass)_94%,transparent)] shadow-[0_-8px_60px_-12px_var(--color-accent-cyan)] backdrop-blur-2xl"
+            className="fixed inset-x-4 bottom-6 z-40 mx-auto max-h-[65vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-[color-mix(in_srgb,var(--color-accent-cyan)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-surface-glass)_94%,transparent)] shadow-[0_-8px_60px_-12px_var(--color-accent-cyan)] backdrop-blur-2xl cyber-scrollbar"
           >
             <div className="p-6 md:p-8">
               {/* Close button */}
@@ -276,6 +307,21 @@ export function DetailPanel() {
                             .map((item) => (
                               <ContentCard
                                 key={`project-${item.title}`}
+                                item={item}
+                              />
+                            ))}
+                        </div>
+                      ) : null}
+
+                      {/* Journey / Case Study */}
+                      {node.content.filter((c) => c.kind === "journey").length >
+                      0 ? (
+                        <div className="space-y-4">
+                          {node.content
+                            .filter((c) => c.kind === "journey")
+                            .map((item) => (
+                              <ContentCard
+                                key={`journey-${item.title}`}
                                 item={item}
                               />
                             ))}

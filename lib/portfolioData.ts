@@ -22,6 +22,14 @@ export type ContentItem =
       label: string;
       value: string;
       trend?: "up" | "down" | "flat";
+    }
+  | {
+      kind: "journey";
+      title: string;
+      sections: {
+        label: string;
+        body: string;
+      }[];
     };
 
 export type PortfolioNode = {
@@ -44,7 +52,7 @@ export const portfolioNodes: PortfolioNode[] = [
   {
     id: CENTER_NODE_ID,
     label: "Tech Lead",
-    shortLabel: "Ops-Tech",
+    shortLabel: "Ops-Tech Integrator",
     description:
       "Tech Lead with over 20 years of experience across law enforcement and private sector operations. I specialise in translating complex ground realities into practical digital systems that drive real adoption and operational impact.",
     chips: ["Operations", "Security", "Tech", "Digitalisation"],
@@ -58,13 +66,14 @@ export const portfolioNodes: PortfolioNode[] = [
   {
     id: "ops",
     label: "Security Operations",
-    shortLabel: "Ops",
+    shortLabel: "Operations & Policy",
     description:
       "Deep operational experience across aviation security and private sector, covering policy, compliance, incident response, and manpower operations.",
     chips: ["Aviation Security", "Incident Mgmt", "Compliance", "Manpower"],
     position: [2.0, 0.5, -0.7],
     accent: "purple",
-    caption: "20 years of ground experience.",
+    caption:
+      "20 years of ground experience in aviation security and private sector.",
     content: [
       {
         kind: "timeline",
@@ -104,8 +113,8 @@ export const portfolioNodes: PortfolioNode[] = [
   // 🔵 SYSTEMS (FULL DETAIL)
   {
     id: "systems",
-    label: "ERP System",
-    shortLabel: "ERP System",
+    label: "Custom Unified Platform",
+    shortLabel: "Custom Unified Platform",
     description:
       "Led end-to-end development of an ERP system, transforming an initial HRMS into a full operations platform used daily across the organisation.",
     chips: ["Next.js", "Postgres", "Fullstack", "System Design"],
@@ -135,15 +144,15 @@ export const portfolioNodes: PortfolioNode[] = [
         subtitle: "Reframing the problem",
         period: "2024 – 2025",
         description:
-          "Identified that HR was only one part of a fragmented system. Expanded scope to include operational workflows such as incident reporting and patrol tracking.",
+          "Identified that HR was only one part of a fragmented system. Expanded scope to include new modules such as Business Management System (BMS) and Learning Management System (LMS).",
       },
       {
         kind: "project",
-        title: "Integrated Enterprise System (IES)",
+        title: "Integrated ERP System",
         summary:
-          "Unified platform covering incident reporting, e-OB, security clocking (Mission Patrol), attendance, rostering, LMS, and organisational structure.",
+          "Unified platform covering incident reporting, e-OB, security clocking (Mission Patrol), attendance, rostering, Learning Management System (LMS), and organisational structure.",
         stack: ["Next.js", "Postgres", "Prisma"],
-        period: "Jun 2024 – Present",
+        period: "Jun 2024 – May 2026",
       },
       { kind: "metric", label: "Sites Covered", value: "90" },
       { kind: "metric", label: "Daily Users", value: "250 Officers" },
@@ -161,7 +170,8 @@ export const portfolioNodes: PortfolioNode[] = [
     chips: ["Workflow Design", "Automation", "Change"],
     position: [0.4, -1.8, 1.1],
     accent: "green",
-    caption: "Transformation is about adoption, not tools.",
+    caption:
+      "Transformation is about adoption, not tools. The system should reflect the ground reality, users should be involved early, and adoption should be the main success metric.",
     content: [
       {
         kind: "timeline",
@@ -200,12 +210,43 @@ export const portfolioNodes: PortfolioNode[] = [
         trend: "up",
       },
       {
+        kind: "metric",
+        label: "Officer Satisfaction Rate",
+        value: "90%",
+      },
+      {
         kind: "timeline",
         title: "AI Integration",
         subtitle: "AI-powered insights",
         period: "2025",
         description:
           "Integrated AI-powered insights to enhance operational awareness and automation.",
+      },
+      {
+        kind: "journey",
+        title: "From Paper to Platform",
+        sections: [
+          {
+            label: "The Problem",
+            body: "Operations were heavily reliant on paper reports, fragmented Excel tracking, and manual coordination across sites. This resulted in delayed reporting, inconsistent data, and limited visibility for management.",
+          },
+          {
+            label: "The Approach",
+            body: "Instead of introducing multiple tools, I focused on building a single integrated platform. What started as a HRMS evolved into a full Integrated Enterprise System (IES) covering incident reporting, electronic occurrence book, patrol tracking, attendance, rostering, and LMS.",
+          },
+          {
+            label: "The Execution",
+            body: "I took on a hybrid role as product owner, operations lead, and system owner. Designed workflows based on real operational needs, guided development with a full stack developer, conducted ground training across all levels, and iterated continuously based on user feedback.",
+          },
+          {
+            label: "The Outcome",
+            body: "90 sites onboarded. 250 officers using daily. 100% adoption within 6 months. 85–95% reduction in paperwork. Reporting time reduced from hours to minutes.",
+          },
+          {
+            label: "Key Insight",
+            body: "Technology alone does not solve operational problems. Real transformation happens when systems reflect ground reality, users are involved early, and adoption is treated as the main success metric.",
+          },
+        ],
       },
     ],
   },
@@ -214,13 +255,14 @@ export const portfolioNodes: PortfolioNode[] = [
   {
     id: "leadership",
     label: "Leadership",
-    shortLabel: "Leadership",
+    shortLabel: "Servant Leader",
     description:
       "Lead transformation by combining operational credibility with system thinking, ensuring adoption across all levels of the organisation.",
-    chips: ["Change Mgmt", "Training", "Execution"],
+    chips: ["Change Mgmt", "Training", "Execution", "Servant Leadership"],
     position: [-2.2, -0.9, -0.7],
     accent: "purple",
-    caption: "People > system.",
+    caption:
+      "People > system. Servant leadership is about serving the needs of the people, not the other way around.",
     content: [
       {
         kind: "timeline",
@@ -229,6 +271,14 @@ export const portfolioNodes: PortfolioNode[] = [
         period: "2024 – Present",
         description:
           "Acted as product owner, operations lead, and system owner, bridging communication between technical and operational stakeholders.",
+      },
+      {
+        kind: "timeline",
+        title: "Tech Lead",
+        subtitle: "Transition to full time tech lead",
+        period: "2026",
+        description:
+          "Transitioned to a full-time tech lead role, focusing on building and maintaining the ERP system and other technical projects.",
       },
       {
         kind: "timeline",
@@ -250,14 +300,15 @@ export const portfolioNodes: PortfolioNode[] = [
   // 🔵 INTEGRATION (REALISTIC)
   {
     id: "integration",
-    label: "Integration",
-    shortLabel: "Integration",
+    label: "Ops-Tech Integration",
+    shortLabel: "Ops-Tech Integration",
     description:
       "Integrated operational workflows and explored advanced capabilities including IoT and video analytics.",
     chips: ["QR Patrol", "IoT", "R&D"],
     position: [1.8, 1.2, -1.0],
     accent: "cyan",
-    caption: "Connecting systems.",
+    caption:
+      "Connecting systems between hardware and software and exploring new frontiers in security operations.",
     content: [
       {
         kind: "project",

@@ -125,3 +125,27 @@ body {
   color: color-mix(in srgb, #b9cacb 88%, transparent);
   text-align: center;
 }
+
+/* Cyber-styled scrollbar for glass panels */
+.cyber-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #0d7079 transparent;
+}
+
+.cyber-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-thumb {
+  background: #0d7079;
+  border-radius: 9999px;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #00dbe9;
+  box-shadow: 0 0 10px #00f0ff44;
+}
