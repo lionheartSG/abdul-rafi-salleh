@@ -10,6 +10,7 @@ import {
   PortfolioHoverProvider,
   usePortfolioHover,
 } from "./portfolio-hover-context";
+import { RippleTrail } from "./RippleTrail";
 import { SpaceBackground } from "./SpaceBackground";
 
 const NodeScene = dynamic(() => import("./NodeScene"), {
@@ -61,6 +62,7 @@ function ExperienceInner() {
       }}
     >
       <SpaceBackground />
+      <RippleTrail />
       <div className="relative z-10 h-full w-full">
         <NodeScene />
       </div>
@@ -110,14 +112,6 @@ function ExperienceInner() {
           >
             Email
           </a>
-        </div>
-        <div className="font-[family-name:var(--font-body)] text-[0.65rem] text-[var(--color-on-surface-muted)]">
-          Created by @Abdul Rafi{" "}
-          {new Date().toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          })}
         </div>
       </footer>
     </div>

@@ -28,12 +28,10 @@ export function MainHubNode({
       <mesh
         onPointerOver={(e) => {
           e.stopPropagation();
-          document.body.style.cursor = "pointer";
           setHoveredNodeId(node.id);
         }}
         onPointerOut={(e) => {
           e.stopPropagation();
-          document.body.style.cursor = "auto";
           setHoveredNodeId(null);
         }}
         onClick={(e) => {

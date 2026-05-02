@@ -2,12 +2,15 @@
 
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { usePortfolioHover } from "./portfolio-hover-context";
 
 export function CustomCursor() {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [visible, setVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
-  const [isPointer, setIsPointer] = useState(false);
+  const [isDOMPointer, setIsDOMPointer] = useState(false);
+  const { hoveredNodeId } = usePortfolioHover();
+  const isPointer = hoveredNodeId !== null || isDOMPointer;
 
   useEffect(() => {
     const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -18,11 +21,10 @@ export function CustomCursor() {
       setPos({ x: e.clientX, y: e.clientY });
       setVisible(true);
       const target = e.target as HTMLElement;
-      setIsPointer(
+      setIsDOMPointer(
         target.tagName === "BUTTON" ||
           target.tagName === "A" ||
-          target.getAttribute("role") === "button" ||
-          window.getComputedStyle(target).cursor === "pointer",
+          target.getAttribute("role") === "button",
       );
     };
     const onLeave = () => setVisible(false);
