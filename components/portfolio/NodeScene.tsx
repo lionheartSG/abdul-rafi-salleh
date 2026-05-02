@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { type ReactNode, useEffect, useRef } from "react";
 import { Vector3 } from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { getNodeById, portfolioNodes } from "@/lib/portfolioData";
+import { portfolioNodes } from "@/lib/portfolioData";
 import { ConnectionLines, MainHubNode, SatelliteNode } from "./nodes";
 import { usePortfolioHover } from "./portfolio-hover-context";
 
@@ -28,13 +28,14 @@ function ParallaxRoot({ children }: { children: ReactNode }) {
 }
 
 function CameraController() {
-  const { focusedNodeId, setFocusedNodeId, setSelectedNodeId } =
+  const { selectedNodeId, setFocusedNodeId, setSelectedNodeId } =
     usePortfolioHover();
   const controlsRef = useRef<OrbitControlsImpl>(null);
   const targetPos = useRef(new Vector3());
   const { camera } = useThree();
-  const prevFocusedRef = useRef<string | null>(null);
+  const prevSelectedRef = useRef<string | null>(null);
   const zoomOutRef = useRef<{ from: number; start: number } | null>(null);
+  const frameHubRef = useRef<{ start: number } | null>(null);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -50,46 +51,46 @@ function CameraController() {
   useEffect(() => {
     if (!controlsRef.current) return;
 
-    if (focusedNodeId) {
-      const node = getNodeById(focusedNodeId);
-      if (node) {
-        targetPos.current.set(...node.position);
-        controlsRef.current.autoRotate = false;
-      }
-    } else {
-      targetPos.current.copy(DEFAULT_TARGET);
+    const prev = prevSelectedRef.current;
+    prevSelectedRef.current = selectedNodeId;
+
+    if (selectedNodeId && !prev) {
+      // Detail panel opened — frame the main hub above the panel
+      targetPos.current.set(0, 0, 0);
+      controlsRef.current.autoRotate = false;
+      frameHubRef.current = { start: performance.now() };
+    } else if (!selectedNodeId && prev) {
+      // Detail panel closed — zoom back out
+      zoomOutRef.current = {
+        from: camera.position.distanceTo(controlsRef.current.target),
+        start: performance.now(),
+      };
       controlsRef.current.autoRotate = true;
+      targetPos.current.copy(DEFAULT_TARGET);
     }
-  }, [focusedNodeId]);
+  }, [selectedNodeId, camera]);
 
   useFrame(() => {
     if (!controlsRef.current) return;
     const c = controlsRef.current;
 
-    c.target.lerp(targetPos.current, 0.05);
     c.update();
 
-    const prevFocused = prevFocusedRef.current;
-    prevFocusedRef.current = focusedNodeId;
+    if (selectedNodeId) {
+      if (frameHubRef.current) {
+        const elapsed = (performance.now() - frameHubRef.current.start) / 1000;
+        const t = Math.min(elapsed / 0.8, 1);
+        const hubTarget = new Vector3(0, -2, 0);
+        const camTarget = new Vector3(0, -5, 6);
+        c.target.lerp(hubTarget, 0.05);
+        camera.position.lerp(camTarget, 0.06);
 
-    if (prevFocused && !focusedNodeId) {
-      zoomOutRef.current = {
-        from: camera.position.distanceTo(c.target),
-        start: performance.now(),
-      };
-    }
-
-    if (focusedNodeId) {
-      const dist = camera.position.distanceTo(c.target);
-      const targetDist = 4;
-      if (dist > targetDist + 0.05) {
-        const dir = camera.position.clone().sub(c.target).normalize();
-        camera.position.lerp(
-          c.target.clone().add(dir.multiplyScalar(targetDist)),
-          0.04,
-        );
+        if (t >= 1) {
+          frameHubRef.current = null;
+        }
       }
     } else if (zoomOutRef.current) {
+      c.target.lerp(targetPos.current, 0.05);
       const { from, start } = zoomOutRef.current;
       const elapsed = (performance.now() - start) / 1000;
       const t = Math.min(elapsed / 1.0, 1);
@@ -127,7 +128,6 @@ function CameraController() {
 }
 
 function SceneContent() {
-  const { setSelectedNodeId, setFocusedNodeId } = usePortfolioHover();
   const center = portfolioNodes.find((n) => n.isCenter);
   const satellites = portfolioNodes.filter((n) => !n.isCenter);
 
@@ -140,19 +140,6 @@ function SceneContent() {
       <pointLight position={[8, 6, 8]} intensity={1.2} color="#dce2f5" />
       <pointLight position={[-6, -4, 4]} intensity={0.6} color="#bc13fe" />
       <pointLight position={[0, 0, 6]} intensity={0.45} color="#00f0ff" />
-
-      {/* Invisible bg plane for deselection click */}
-      {/* biome-ignore lint/a11y/noStaticElementInteractions: R3F mesh, not a DOM element */}
-      <mesh
-        position={[0, 0, -8]}
-        onClick={() => {
-          setSelectedNodeId(null);
-          setFocusedNodeId(null);
-        }}
-      >
-        <planeGeometry args={[80, 80]} />
-        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
-      </mesh>
 
       <ParallaxRoot>
         <Stars

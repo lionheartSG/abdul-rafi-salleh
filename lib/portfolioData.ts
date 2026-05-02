@@ -87,7 +87,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "Deep operational experience across aviation security and private sector, covering policy, compliance, incident response, and manpower operations.",
     chips: ["Aviation Security", "Incident Mgmt", "Compliance", "Manpower"],
-    position: [2.0, 0.5, -0.7],
+    position: [3.2, 0.8, -1.1],
     accent: "purple",
     caption:
       "20 years of ground experience in aviation security and private sector.",
@@ -135,7 +135,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "Led end-to-end development of an ERP system, transforming an initial HRMS into a full operations platform used daily across the organisation.",
     chips: ["Next.js", "Postgres", "Fullstack", "System Design"],
-    position: [-1.9, 0.6, 0.8],
+    position: [-3.1, 1.0, 1.3],
     accent: "cyan",
     caption: "From HRMS to full enterprise ERP system with AI integration.",
     content: [
@@ -185,7 +185,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "Transformed traditional paper-based operations into structured digital workflows across the organisation.",
     chips: ["Workflow Design", "Automation", "Change"],
-    position: [0.4, -1.8, 1.1],
+    position: [0.7, -2.9, 1.8],
     accent: "green",
     caption:
       "Transformation is about adoption, not tools. The system should reflect the ground reality, users should be involved early, and adoption should be the main success metric.",
@@ -276,7 +276,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "Lead transformation by combining operational credibility with system thinking, ensuring adoption across all levels of the organisation.",
     chips: ["Change Mgmt", "Training", "Execution", "Servant Leadership"],
-    position: [-2.2, -0.9, -0.7],
+    position: [-3.1, -1.3, -1.0],
     accent: "purple",
     caption:
       "People > System. Servant leadership is about serving the needs of the people, not the other way around.",
@@ -322,7 +322,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "Integrated operational workflows and explored advanced capabilities including IoT and video analytics.",
     chips: ["QR Patrol", "IoT", "R&D"],
-    position: [1.8, 1.2, -1.0],
+    position: [2.6, 1.8, -1.5],
     accent: "cyan",
     caption:
       "Connecting systems between hardware and software and exploring new frontiers in security operations.",
@@ -358,7 +358,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "17 years in Singapore Police Force covering frontline policing, investigations, and aviation security. Experienced in crime operations, regulatory frameworks, and leadership in high-stakes environments.",
     chips: ["Policing", "Investigations", "Leadership", "Security"],
-    position: [2.4, -0.2, 1.2], // adjust if clashes with others
+    position: [3.1, -0.3, 1.6],
     accent: "purple",
     caption:
       "Where discipline, judgement, and leadership were forged in the Singapore Police Force. Courage, Loyalty, Integrity, and Fairness remains core values.",
@@ -398,7 +398,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "From frontline policing to ops-tech leadership — a 20-year career spanning law enforcement, national policy, investigations, and digital transformation.",
     chips: ["Career", "Timeline", "Work + Education"],
-    position: [0, 2.2, -1.5],
+    position: [0, 2.9, -2.0],
     accent: "purple",
     caption: "20 years across law enforcement, operations, and technology.",
     content: [
@@ -568,7 +568,7 @@ export const portfolioNodes: PortfolioNode[] = [
     description:
       "Capabilities built across two decades of law enforcement, operations, and technology.",
     chips: [],
-    position: [-2.0, 1.2, -1.2],
+    position: [-2.7, 1.6, -1.6],
     accent: "green",
     caption: "Blending operational depth with technical execution.",
     content: [

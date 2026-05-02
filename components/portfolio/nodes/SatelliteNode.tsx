@@ -16,7 +16,7 @@ type SatelliteNodeProps = {
 
 export function SatelliteNode({
   node,
-  hitRadius = 0.26,
+  hitRadius = 0.45,
   distanceFactor = 6,
 }: SatelliteNodeProps) {
   const groupRef = useRef<Group>(null);
