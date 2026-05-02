@@ -96,9 +96,9 @@ function CameraController() {
       const ease = 1 - (1 - t) ** 3;
       const dist = camera.position.distanceTo(c.target);
 
-      if (dist < 7.8) {
+      if (dist < 13.8) {
         const dir = camera.position.clone().sub(c.target).normalize();
-        const desired = from + (8 - from) * ease;
+        const desired = from + (14 - from) * ease;
         camera.position.lerp(
           c.target.clone().add(dir.multiplyScalar(desired)),
           0.06,
@@ -191,6 +191,9 @@ export default function NodeScene() {
         far: 100,
       }}
       onCreated={({ camera }) => {
+        const isMobile =
+          typeof window !== "undefined" && window.innerWidth < 768;
+        camera.position.set(0, 0.35, isMobile ? 14 : 8.2);
         camera.lookAt(0, 0, 0);
       }}
     >

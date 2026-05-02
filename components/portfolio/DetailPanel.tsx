@@ -252,7 +252,7 @@ export function DetailPanel() {
             animate={{ y: "0%", opacity: 1 }}
             exit={{ y: "40%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-x-4 bottom-6 z-40 mx-auto max-h-[65vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-[color-mix(in_srgb,var(--color-accent-cyan)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-surface-glass)_94%,transparent)] shadow-[0_-8px_60px_-12px_var(--color-accent-cyan)] backdrop-blur-2xl cyber-scrollbar"
+            className="fixed bottom-6 left-1/2 z-40 max-h-[65vh] w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-y-auto overflow-x-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-accent-cyan)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-surface-glass)_94%,transparent)] shadow-[0_-8px_60px_-12px_var(--color-accent-cyan)] backdrop-blur-2xl scrollbar-none"
           >
             <div className="p-6 md:p-8">
               {/* Close button */}
