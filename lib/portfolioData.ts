@@ -37,6 +37,16 @@ export type ContentItem =
         label: string;
         body: string;
       }[];
+    }
+  | {
+      kind: "career";
+      variant: "work" | "education" | "pivot" | "hero";
+      title: string;
+      subtitle: string;
+      period: string;
+      description: string;
+      highlights?: string[];
+      color?: "purple" | "blue" | "green";
     };
 
 export type PortfolioNode = {
@@ -61,58 +71,12 @@ export const portfolioNodes: PortfolioNode[] = [
     label: "Abdul Rafi Salleh",
     shortLabel: "Tech Lead & Ops-Tech Integrator",
     description:
-      "Tech Lead with over 20 years of experience across law enforcement and private sector operations. I specialise in translating complex ground realities into practical digital systems that drive real adoption and operational impact.",
+      "I started my career in frontline law enforcement, where I learned early what responsibility, discipline, and decision making under pressure really mean. For over a decade, I was in environments where mistakes had real consequences and where structure and clarity were not optional. Over time, I found myself naturally drawn to improving how things work, not just doing the work itself. Whether it was investigating cases, leading officers on the ground, or building internal systems to track operations, I was always trying to make processes clearer, faster, and more reliable. That curiosity eventually led me into technology. I started building software not as a career switch, but as a way to solve real operational problems I had experienced firsthand. What began as simple tools gradually grew into full systems used across multiple sites, supporting daily operations, reporting, and workforce coordination. Today, I work as a Tech Lead in an Ops-Tech role, bridging ground operations and system design. My focus is not just on building software, but on making sure it actually works in real environments where people are busy, under pressure, and need things to be simple and dependable. What drives me is not technology on its own, but impact. I care about whether a system reduces frustration on the ground, whether it saves time for officers, and whether it makes decision making clearer for everyone involved. I don't see my journey as a shift away from my past, but rather a continuation of it. Everything I build today is still rooted in the same foundation: understanding people, understanding operations, and trying to make things better than how I found them.",
     chips: ["Operations", "Security", "Tech", "Digitalisation"],
     position: [0, 0, 0],
     isCenter: true,
     accent: "cyan",
     avatarSrc: "/rafi.png",
-    content: [
-      {
-        kind: "skills",
-        categories: [
-          {
-            label: "Technical",
-            items: [
-              "Next.js",
-              "React",
-              "TypeScript",
-              "Node.js",
-              "Postgres",
-              "Prisma",
-              "REST APIs",
-              "Fullstack Development",
-              "System Design",
-              "Automation",
-            ],
-          },
-          {
-            label: "Operations",
-            items: [
-              "Aviation Security",
-              "Incident Management",
-              "Compliance & Audits",
-              "Manpower Planning",
-              "SOP Development",
-              "Stakeholder Management",
-              "Crisis Response",
-            ],
-          },
-          {
-            label: "Leadership",
-            items: [
-              "Change Management",
-              "Digital Transformation",
-              "Team Training",
-              "Cross-Functional Execution",
-              "Strategy & Roadmapping",
-              "QA / QC",
-              "R&D & IoT Exploration",
-            ],
-          },
-        ],
-      },
-    ],
   },
 
   // 🔴 OPS (FULL HISTORY)
@@ -427,8 +391,234 @@ export const portfolioNodes: PortfolioNode[] = [
       },
     ],
   },
-];
+  {
+    id: "journey",
+    label: "Career Journey",
+    shortLabel: "Journey",
+    description:
+      "From frontline policing to ops-tech leadership — a 20-year career spanning law enforcement, national policy, investigations, and digital transformation.",
+    chips: ["Career", "Timeline", "Work + Education"],
+    position: [0, 2.2, -1.5],
+    accent: "purple",
+    caption: "20 years across law enforcement, operations, and technology.",
+    content: [
+      {
+        kind: "career",
+        variant: "education",
+        color: "purple",
+        title: "Singapore Polytechnic",
+        subtitle: "Diploma in Electronic, Computer & Communication",
+        period: "2001 – 2004",
+        description: "Technical Foundation — built the engineering mindset.",
+      },
+      {
+        kind: "career",
+        variant: "hero",
+        color: "blue",
+        title: "Patrol Officer → Station Sergeant / Group Leader",
+        subtitle: "Singapore Police Force",
+        period: "2005 – 2010",
+        description: "Frontline policing and incident response.",
+        highlights: [
+          "Led 60+ officers",
+          "Trained new officers and NSFs",
+          "Improved deployment planning efficiency by 80%",
+          "Appointed unit IT in-charge",
+        ],
+      },
+      {
+        kind: "career",
+        variant: "education",
+        color: "purple",
+        title: "Singapore University of Social Sciences",
+        subtitle: "BSc Management & Security Studies",
+        period: "2010 – 2013",
+        description:
+          "Formalising leadership & security knowledge while in service.",
+      },
+      {
+        kind: "career",
+        variant: "hero",
+        color: "blue",
+        title: "Anti-Crime Task Force – Assistant OIC",
+        subtitle: "Singapore Police Force",
+        period: "2010 – 2013",
+        description:
+          "Led investigations and operations with a systems mindset.",
+        highlights: [
+          "Built in-house case management and crime analytics system",
+          "Led joint operations and investigations",
+          "Received 30+ commendations including Higher Commander's and Commissioner's awards",
+        ],
+      },
+      {
+        kind: "career",
+        variant: "hero",
+        color: "blue",
+        title: "Operations Officer / Staff Officer",
+        subtitle: "SPF Aviation Security",
+        period: "2013 – 2022",
+        description:
+          "National-level policy, regulatory frameworks, and systems thinking at scale.",
+        highlights: [
+          "Drafted and maintained 200+ SOPs under the Air Navigation Act",
+          "Worked with 50+ airlines and government agencies",
+          "Led international audits with zero adverse findings",
+          "Risk assessment and security inspections across airports",
+          "Received Pingat Berkebolehan (National Day Award 2022)",
+        ],
+      },
+      {
+        kind: "career",
+        variant: "education",
+        color: "purple",
+        title: "Temasek Polytechnic",
+        subtitle: "Specialist Diploma in Security Consultancy",
+        period: "2020 – 2021",
+        description: "Deepening domain expertise in security consultancy.",
+      },
+      {
+        kind: "career",
+        variant: "education",
+        color: "green",
+        title: "Le Wagon + ReactJS Certification",
+        subtitle: "Full-Stack Web Development",
+        period: "2022 – 2023",
+        description:
+          "Self-driven transition into tech — intensive full-stack training alongside project work.",
+      },
+      {
+        kind: "career",
+        variant: "hero",
+        color: "green",
+        title: "React Developer",
+        subtitle: "ICA Project via Accenture",
+        period: "2022 – 2023",
+        description:
+          "Enterprise application development — the deliberate pivot into tech.",
+        highlights: [
+          "Built production React + TypeScript applications",
+          "API integration and enterprise system development",
+          "Self-taught transition from operations to engineering",
+        ],
+      },
+      {
+        kind: "career",
+        variant: "hero",
+        color: "blue",
+        title: "STEM Instructor (Robotics)",
+        subtitle: "Ministry of Education",
+        period: "Jan 2024 - Mar 2024",
+        description:
+          "Transition and recalibration — bridging ops experience with teaching in STEM robotics education.",
+      },
+      {
+        kind: "career",
+        variant: "hero",
+        color: "green",
+        title: "[Dual Role] - Operations Executive / Ops-Tech Lead",
+        subtitle: "Private Security Sector",
+        period: "June 2024 – April 2026",
+        description:
+          "Hybrid role combining frontline operations management with internal digitalisation initiatives. Focused on improving operational efficiency through system building, process redesign, and digitisation of core workflows across multi-site security operations.",
 
+        highlights: [
+          "Oversaw daily security operations across multiple sites, ensuring manpower deployment, incident response, and service consistency",
+          "Led digitalisation of operational workflows by converting manual paper-based forms into structured digital systems",
+          "Improved key operational processes through workflow redesign, reducing administrative effort and improving reporting clarity",
+          "Drove adoption through on-ground engagement, training, and continuous feedback from supervisors and officers",
+          "Maintained end-to-end involvement from requirements gathering to deployment and ongoing system improvements",
+        ],
+      },
+      {
+        kind: "career",
+        variant: "hero",
+        color: "green",
+        title: "Tech Lead (Software Development & Digitalisation)",
+        subtitle: "Private Security Sector",
+        period: "Apr 2026 - Current",
+        description:
+          "Led the convergence of operations and technology by building internal systems directly from frontline operational needs. Started with a HRMS initiative and progressively evolved it into a full Integrated Enterprise System (IES) powering daily operations across the organisation.",
+
+        highlights: [
+          "Started with a HRMS requirement and expanded scope into a full operational platform based on ground realities",
+          "Designed and built an Integrated Enterprise System (IES) covering incident reporting, patrol tracking, attendance, rostering, and organisational structure",
+          "Deployed system across 90 sites with 250 officers actively using it daily in real operations",
+          "Achieved full organisational adoption within 6 months through structured rollout, training, and iterative feedback cycles",
+          "Reduced paper-based workflows by 85–95%, significantly improving reporting speed and data consistency",
+          "Owned entire lifecycle end-to-end: requirements gathering, system design, development guidance, deployment, and operational adoption",
+          "Acted as bridge between Command, HR, Payroll, and ground operations to align technical solutions with real-world constraints",
+        ],
+      },
+      {
+        kind: "career",
+        variant: "education",
+        color: "green",
+        title: "BELLS Institute of Higher Learning",
+        subtitle: "Business Digitalisation Specialist",
+        period: "2024 – 2025",
+        description: "Formalising digital transformation capability.",
+      },
+    ],
+  },
+  {
+    id: "skills-profile",
+    label: "Skills & Expertise",
+    shortLabel: "Skills",
+    description:
+      "Capabilities built across two decades of law enforcement, operations, and technology.",
+    chips: [],
+    position: [-2.0, 1.2, -1.2],
+    accent: "green",
+    caption: "Blending operational depth with technical execution.",
+    content: [
+      {
+        kind: "skills",
+        categories: [
+          {
+            label: "Technical",
+            items: [
+              "Next.js",
+              "React",
+              "TypeScript",
+              "Node.js",
+              "Postgres",
+              "Prisma",
+              "REST APIs",
+              "Fullstack Development",
+              "System Design",
+              "Automation",
+            ],
+          },
+          {
+            label: "Operations",
+            items: [
+              "Aviation Security",
+              "Incident Management",
+              "Compliance & Audits",
+              "Manpower Planning",
+              "SOP Development",
+              "Stakeholder Management",
+              "Crisis Response",
+            ],
+          },
+          {
+            label: "Leadership",
+            items: [
+              "Change Management",
+              "Digital Transformation",
+              "Team Training",
+              "Cross-Functional Execution",
+              "Strategy & Roadmapping",
+              "QA / QC",
+              "R&D & IoT Exploration",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
 /* ── Edge helpers ── */
 
 export type PortfolioEdge = { from: string; to: string };

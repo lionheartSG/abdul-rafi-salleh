@@ -5,11 +5,9 @@ import { CENTER_NODE_ID } from "@/lib/portfolioData";
 import { usePortfolioHover } from "./portfolio-hover-context";
 
 const navLinks = [
-  { label: "About", nodeId: CENTER_NODE_ID },
-  { label: "Skills", nodeId: CENTER_NODE_ID },
-  { label: "Work", nodeId: "systems" },
-  { label: "Journey", nodeId: "digitalisation" },
-  { label: "Security Ops", nodeId: "ops" },
+  { label: "About Me", nodeId: CENTER_NODE_ID },
+  { label: "Skills", nodeId: "skills-profile" },
+  { label: "Journey", nodeId: "journey" },
 ];
 
 export function NavBar() {

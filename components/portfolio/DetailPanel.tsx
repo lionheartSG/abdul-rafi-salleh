@@ -135,6 +135,78 @@ function ContentCard({ item }: { item: ContentItem }) {
         </div>
       );
 
+    case "career": {
+      const colorMap = {
+        purple: "var(--color-accent-purple)",
+        blue: "var(--color-accent-cyan)",
+        green: "var(--color-accent-green)",
+      };
+      const accent = colorMap[item.color ?? "blue"];
+      const isHero = item.variant === "hero";
+      const isEducation = item.variant === "education";
+      const isPivot = item.variant === "pivot";
+      const dotBg = isHero
+        ? "var(--color-accent-cyan)"
+        : isPivot
+          ? "var(--color-accent-green)"
+          : isEducation
+            ? "var(--color-accent-purple)"
+            : accent;
+      return (
+        <div className="flex gap-3">
+          <div className="flex flex-col items-center pt-1">
+            <div
+              className={`rounded-full border-2 ${isHero ? "h-3.5 w-3.5 shadow-[0_0_12px_var(--color-accent-cyan)]" : "h-2.5 w-2.5"}`}
+              style={{ borderColor: dotBg, background: `${dotBg}33` }}
+            />
+            <div className="mt-1 w-px flex-1 bg-[color-mix(in_srgb,var(--color-accent-cyan)_18%,transparent)]" />
+          </div>
+          <div className="pb-5">
+            {isHero ? (
+              <span className="inline-block rounded border border-[color-mix(in_srgb,var(--color-accent-cyan)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent-cyan)_10%,transparent)] px-2 py-0.5 font-[family-name:var(--font-label)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-accent-cyan)]">
+                HERO
+              </span>
+            ) : isPivot ? (
+              <span className="inline-block rounded border border-[color-mix(in_srgb,var(--color-accent-green)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent-green)_10%,transparent)] px-2 py-0.5 font-[family-name:var(--font-label)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-accent-green)]">
+                PIVOT
+              </span>
+            ) : isEducation ? (
+              <span className="inline-block rounded border border-[color-mix(in_srgb,var(--color-accent-purple)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent-purple)_10%,transparent)] px-2 py-0.5 font-[family-name:var(--font-label)] text-[0.55rem] font-medium uppercase tracking-[0.12em] text-[var(--color-accent-purple)]">
+                Education
+              </span>
+            ) : null}
+            <p className="mt-1 font-[family-name:var(--font-label)] text-[0.6rem] font-medium uppercase tracking-[0.1em] text-[var(--color-accent-cyan)]">
+              {item.period}
+            </p>
+            <h4
+              className={`mt-0.5 font-[family-name:var(--font-display)] font-semibold tracking-tight text-[var(--color-on-surface)] ${isHero ? "text-lg shadow-[0_0_16px_var(--color-accent-cyan)_25%]" : "text-sm"}`}
+            >
+              {item.title}
+            </h4>
+            <p className="font-[family-name:var(--font-body)] text-xs text-[var(--color-on-surface-muted)]">
+              {item.subtitle}
+            </p>
+            <p className="mt-1.5 font-[family-name:var(--font-body)] text-xs leading-relaxed text-[var(--color-on-surface-muted)]">
+              {item.description}
+            </p>
+            {item.highlights && item.highlights.length > 0 ? (
+              <ul className="mt-2 space-y-1">
+                {item.highlights.map((h) => (
+                  <li
+                    key={h}
+                    className="flex items-start gap-2 font-[family-name:var(--font-body)] text-xs leading-relaxed text-[var(--color-on-surface-muted)]"
+                  >
+                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[var(--color-accent-cyan)]" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </div>
+      );
+    }
+
     default:
       return null;
   }
@@ -300,6 +372,21 @@ export function DetailPanel() {
                             .map((item) => (
                               <ContentCard
                                 key={`metric-${item.label}`}
+                                item={item}
+                              />
+                            ))}
+                        </div>
+                      ) : null}
+
+                      {/* Career timeline */}
+                      {node.content.filter((c) => c.kind === "career").length >
+                      0 ? (
+                        <div>
+                          {node.content
+                            .filter((c) => c.kind === "career")
+                            .map((item) => (
+                              <ContentCard
+                                key={`career-${item.title}-${item.period}`}
                                 item={item}
                               />
                             ))}
