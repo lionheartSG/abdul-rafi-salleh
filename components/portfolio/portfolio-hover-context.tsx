@@ -16,6 +16,10 @@ export type PointerClient = { x: number; y: number };
 type PortfolioHoverContextValue = {
   hoveredNodeId: string | null;
   setHoveredNodeId: (id: string | null) => void;
+  selectedNodeId: string | null;
+  setSelectedNodeId: (id: string | null) => void;
+  focusedNodeId: string | null;
+  setFocusedNodeId: (id: string | null) => void;
   pointerNorm: PointerNorm;
   pointerClient: PointerClient;
   setPointerFromClient: (clientX: number, clientY: number) => void;
@@ -27,6 +31,8 @@ const PortfolioHoverContext = createContext<PortfolioHoverContextValue | null>(
 
 export function PortfolioHoverProvider({ children }: { children: ReactNode }) {
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [focusedNodeId, setFocusedNodeId] = useState<string | null>(null);
   const [pointerNorm, setPointerNorm] = useState<PointerNorm>({
     x: 0,
     y: 0,
@@ -51,11 +57,22 @@ export function PortfolioHoverProvider({ children }: { children: ReactNode }) {
     () => ({
       hoveredNodeId,
       setHoveredNodeId,
+      selectedNodeId,
+      setSelectedNodeId,
+      focusedNodeId,
+      setFocusedNodeId,
       pointerNorm,
       pointerClient,
       setPointerFromClient,
     }),
-    [hoveredNodeId, pointerClient, pointerNorm, setPointerFromClient],
+    [
+      hoveredNodeId,
+      selectedNodeId,
+      focusedNodeId,
+      pointerClient,
+      pointerNorm,
+      setPointerFromClient,
+    ],
   );
 
   return (

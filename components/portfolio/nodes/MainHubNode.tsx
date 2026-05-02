@@ -8,28 +8,23 @@ import { usePortfolioHover } from "../portfolio-hover-context";
 
 type MainHubNodeProps = {
   node: PortfolioNode;
-  /** Invisible hit sphere radius (world units) */
   hitRadius?: number;
-  /** Html scale vs camera distance */
   distanceFactor?: number;
 };
 
-/**
- * Main hub matches Stitch / mockup: circular photo, thick dark bezel,
- * cyan outer glow, “System Architect” + uppercase role below (2D billboard in scene).
- */
 export function MainHubNode({
   node,
   hitRadius = 0.52,
   distanceFactor = 7.2,
 }: MainHubNodeProps) {
-  const { setHoveredNodeId } = usePortfolioHover();
+  const { setHoveredNodeId, setSelectedNodeId, setFocusedNodeId } =
+    usePortfolioHover();
   const [imgFailed, setImgFailed] = useState(false);
   const avatarSrc = node.avatarSrc ?? "/main-hub-avatar.png";
 
   return (
     <group position={node.position}>
-      {/* Hit target — Html uses pointer-events:none so events reach the canvas */}
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: R3F mesh, not a DOM element */}
       <mesh
         onPointerOver={(e) => {
           e.stopPropagation();
@@ -40,6 +35,11 @@ export function MainHubNode({
           e.stopPropagation();
           document.body.style.cursor = "auto";
           setHoveredNodeId(null);
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelectedNodeId(node.id);
+          setFocusedNodeId(node.id);
         }}
       >
         <sphereGeometry args={[hitRadius, 40, 40]} />

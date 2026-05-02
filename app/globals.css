@@ -33,6 +33,13 @@ body {
   background: var(--color-bg-deep);
   color: var(--foreground);
   font-family: var(--font-body);
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
 }
 
 /* Main hub (mockup): circular photo, dark bezel, cyan glow, titles */

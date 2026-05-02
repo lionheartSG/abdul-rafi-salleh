@@ -10,14 +10,10 @@ import { accentSphereStyle } from "./nodeTokens";
 
 type SatelliteNodeProps = {
   node: PortfolioNode;
-  /** Invisible hit sphere (world units) */
   hitRadius?: number;
   distanceFactor?: number;
 };
 
-/**
- * Satellite: black disc, accent border only — caption under the disc (no icons / halo).
- */
 export function SatelliteNode({
   node,
   hitRadius = 0.26,
@@ -25,7 +21,8 @@ export function SatelliteNode({
 }: SatelliteNodeProps) {
   const groupRef = useRef<Group>(null);
   const floatRef = useRef<Group>(null);
-  const { setHoveredNodeId } = usePortfolioHover();
+  const { setHoveredNodeId, setSelectedNodeId, setFocusedNodeId } =
+    usePortfolioHover();
   const accent = node.accent ?? "cyan";
   const borderColor = accentSphereStyle[accent].ring;
   const caption =
@@ -42,6 +39,7 @@ export function SatelliteNode({
   return (
     <group ref={groupRef} position={node.position}>
       <group ref={floatRef}>
+        {/* biome-ignore lint/a11y/noStaticElementInteractions: R3F mesh, not a DOM element */}
         <mesh
           onPointerOver={(e) => {
             e.stopPropagation();
@@ -52,6 +50,11 @@ export function SatelliteNode({
             e.stopPropagation();
             document.body.style.cursor = "auto";
             setHoveredNodeId(null);
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelectedNodeId(node.id);
+            setFocusedNodeId(node.id);
           }}
         >
           <sphereGeometry args={[hitRadius, 28, 28]} />

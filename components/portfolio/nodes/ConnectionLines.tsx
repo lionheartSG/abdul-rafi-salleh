@@ -1,17 +1,27 @@
 "use client";
 
 import { Line } from "@react-three/drei";
-import { useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
 import { portfolioEdges, portfolioNodes } from "@/lib/portfolioData";
 
 const EDGE_LINE_WIDTH = 1.2;
 
-/** Stitch-style data traces: cyan → purple gradient feel via dashed cyan line. */
 export function ConnectionLines() {
   const byId = useMemo(
     () => Object.fromEntries(portfolioNodes.map((n) => [n.id, n.position])),
     [],
   );
+
+  const refs = useRef<Map<string, { material: { dashOffset: number } }>>(
+    new Map(),
+  );
+
+  useFrame((_, delta) => {
+    for (const [, line] of refs.current) {
+      line.material.dashOffset -= delta * 0.25;
+    }
+  });
 
   return (
     <>
@@ -22,6 +32,10 @@ export function ConnectionLines() {
         return (
           <Line
             key={`${from}-${to}`}
+            ref={(el: { material: { dashOffset: number } } | null) => {
+              if (el) refs.current.set(`${from}-${to}`, el);
+              else refs.current.delete(`${from}-${to}`);
+            }}
             points={[a, b]}
             color="#00f0ff"
             lineWidth={EDGE_LINE_WIDTH}

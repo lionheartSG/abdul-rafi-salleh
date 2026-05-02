@@ -22,7 +22,27 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Technical Lead · Interactive Node Network",
   description:
-    "Personal portfolio as an immersive node network — architecture, leadership, and engineering.",
+    "Personal portfolio as an immersive 3D node network. Technical leadership, architecture, engineering, and open source — explore by clicking orbiting satellites.",
+  keywords: [
+    "technical lead",
+    "software architect",
+    "fullstack engineer",
+    "portfolio",
+    "node network",
+    "3D",
+  ],
+  openGraph: {
+    title: "Technical Lead · Interactive Node Network",
+    description:
+      "Explore an immersive 3D node network showcasing technical leadership, architecture, and engineering.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Technical Lead · Interactive Node Network",
+    description:
+      "Immersive 3D portfolio — click nodes to explore architecture, leadership, and engineering.",
+  },
 };
 
 export default function RootLayout({
