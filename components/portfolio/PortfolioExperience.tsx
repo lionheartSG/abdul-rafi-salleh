@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
+import { BackgroundAudio } from "./BackgroundAudio";
 import { CustomCursor } from "./CustomCursor";
 import { DetailPanel } from "./DetailPanel";
 import { LoadingScreen } from "./LoadingScreen";
@@ -61,6 +62,7 @@ function ExperienceInner() {
       <NodePopup />
       <DetailPanel />
       <CustomCursor />
+      <BackgroundAudio />
 
       <footer className="pointer-events-none absolute bottom-0 left-0 z-20 flex w-full items-center justify-between p-4">
         <div className="pointer-events-auto flex items-center gap-4">

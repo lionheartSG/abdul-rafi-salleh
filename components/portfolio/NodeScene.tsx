@@ -120,7 +120,7 @@ function CameraController() {
       minDistance={2.5}
       maxDistance={14}
       autoRotate
-      autoRotateSpeed={0.35}
+      autoRotateSpeed={0.15}
       maxPolarAngle={Math.PI / 2 + 0.35}
       minPolarAngle={Math.PI / 4}
     />

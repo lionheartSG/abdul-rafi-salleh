@@ -394,23 +394,14 @@ export const portfolioNodes: PortfolioNode[] = [
   {
     id: "journey",
     label: "Career Journey",
-    shortLabel: "Journey",
+    shortLabel: "Career",
     description:
       "From frontline policing to ops-tech leadership — a 20-year career spanning law enforcement, national policy, investigations, and digital transformation.",
-    chips: ["Career", "Timeline", "Work + Education"],
+    chips: ["Career", "Timeline"],
     position: [0, 2.9, -2.0],
     accent: "purple",
     caption: "20 years across law enforcement, operations, and technology.",
     content: [
-      {
-        kind: "career",
-        variant: "education",
-        color: "purple",
-        title: "Singapore Polytechnic",
-        subtitle: "Diploma in Electronic, Computer & Communication",
-        period: "2001 – 2004",
-        description: "Technical Foundation — built the engineering mindset.",
-      },
       {
         kind: "career",
         variant: "hero",
@@ -425,16 +416,6 @@ export const portfolioNodes: PortfolioNode[] = [
           "Improved deployment planning efficiency by 80%",
           "Appointed unit IT in-charge",
         ],
-      },
-      {
-        kind: "career",
-        variant: "education",
-        color: "purple",
-        title: "Singapore University of Social Sciences",
-        subtitle: "BSc Management & Security Studies",
-        period: "2010 – 2013",
-        description:
-          "Formalising leadership & security knowledge while in service.",
       },
       {
         kind: "career",
@@ -467,25 +448,6 @@ export const portfolioNodes: PortfolioNode[] = [
           "Risk assessment and security inspections across airports",
           "Received Pingat Berkebolehan (National Day Award 2022)",
         ],
-      },
-      {
-        kind: "career",
-        variant: "education",
-        color: "purple",
-        title: "Temasek Polytechnic",
-        subtitle: "Specialist Diploma in Security Consultancy",
-        period: "2020 – 2021",
-        description: "Deepening domain expertise in security consultancy.",
-      },
-      {
-        kind: "career",
-        variant: "education",
-        color: "green",
-        title: "Le Wagon + ReactJS Certification",
-        subtitle: "Full-Stack Web Development",
-        period: "2022 – 2023",
-        description:
-          "Self-driven transition into tech — intensive full-stack training alongside project work.",
       },
       {
         kind: "career",
@@ -549,6 +511,57 @@ export const portfolioNodes: PortfolioNode[] = [
           "Owned entire lifecycle end-to-end: requirements gathering, system design, development guidance, deployment, and operational adoption",
           "Acted as bridge between Command, HR, Payroll, and ground operations to align technical solutions with real-world constraints",
         ],
+      },
+    ],
+  },
+  {
+    id: "education",
+    label: "Education Journey",
+    shortLabel: "Education",
+    description:
+      "Academic and professional qualifications spanning electronics, security management, web development, and business digitalisation.",
+    chips: [],
+    position: [0, 3.6, -1.5],
+    accent: "purple",
+    caption: "Degrees, diplomas, and certifications.",
+    content: [
+      {
+        kind: "career",
+        variant: "education",
+        color: "purple",
+        title: "Singapore Polytechnic",
+        subtitle: "Diploma in Electronic, Computer & Communication",
+        period: "2001 – 2004",
+        description: "Technical Foundation — built the engineering mindset.",
+      },
+      {
+        kind: "career",
+        variant: "education",
+        color: "purple",
+        title: "Singapore University of Social Sciences",
+        subtitle: "BSc Management & Security Studies",
+        period: "2010 – 2013",
+        description:
+          "Formalising leadership & security knowledge while in service.",
+      },
+      {
+        kind: "career",
+        variant: "education",
+        color: "purple",
+        title: "Temasek Polytechnic",
+        subtitle: "Specialist Diploma in Security Consultancy",
+        period: "2020 – 2021",
+        description: "Deepening domain expertise in security consultancy.",
+      },
+      {
+        kind: "career",
+        variant: "education",
+        color: "green",
+        title: "Le Wagon + ReactJS Certification",
+        subtitle: "Full-Stack Web Development",
+        period: "2022 – 2023",
+        description:
+          "Self-driven transition into tech — intensive full-stack training alongside project work.",
       },
       {
         kind: "career",

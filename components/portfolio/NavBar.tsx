@@ -7,7 +7,8 @@ import { usePortfolioHover } from "./portfolio-hover-context";
 const navLinks = [
   { label: "About Me", nodeId: CENTER_NODE_ID },
   { label: "Skills", nodeId: "skills-profile" },
-  { label: "Journey", nodeId: "journey" },
+  { label: "Career", nodeId: "journey" },
+  { label: "Education", nodeId: "education" },
 ];
 
 export function NavBar() {

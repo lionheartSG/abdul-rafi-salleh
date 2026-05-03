@@ -142,31 +142,24 @@ function ContentCard({ item }: { item: ContentItem }) {
         green: "var(--color-accent-green)",
       };
       const accent = colorMap[item.color ?? "blue"];
-      const isHero = item.variant === "hero";
       const isEducation = item.variant === "education";
       const isPivot = item.variant === "pivot";
-      const dotBg = isHero
-        ? "var(--color-accent-cyan)"
-        : isPivot
-          ? "var(--color-accent-green)"
-          : isEducation
-            ? "var(--color-accent-purple)"
-            : accent;
+      const dotBg = isPivot
+        ? "var(--color-accent-green)"
+        : isEducation
+          ? "var(--color-accent-purple)"
+          : accent;
       return (
         <div className="flex gap-3">
           <div className="flex flex-col items-center pt-1">
             <div
-              className={`rounded-full border-2 ${isHero ? "h-3.5 w-3.5 shadow-[0_0_12px_var(--color-accent-cyan)]" : "h-2.5 w-2.5"}`}
+              className="h-2.5 w-2.5 rounded-full border-2"
               style={{ borderColor: dotBg, background: `${dotBg}33` }}
             />
             <div className="mt-1 w-px flex-1 bg-[color-mix(in_srgb,var(--color-accent-cyan)_18%,transparent)]" />
           </div>
           <div className="pb-5">
-            {isHero ? (
-              <span className="inline-block rounded border border-[color-mix(in_srgb,var(--color-accent-cyan)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent-cyan)_10%,transparent)] px-2 py-0.5 font-[family-name:var(--font-label)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-accent-cyan)]">
-                HERO
-              </span>
-            ) : isPivot ? (
+            {isPivot ? (
               <span className="inline-block rounded border border-[color-mix(in_srgb,var(--color-accent-green)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent-green)_10%,transparent)] px-2 py-0.5 font-[family-name:var(--font-label)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-accent-green)]">
                 PIVOT
               </span>
@@ -178,9 +171,7 @@ function ContentCard({ item }: { item: ContentItem }) {
             <p className="mt-1 font-[family-name:var(--font-label)] text-[0.6rem] font-medium uppercase tracking-[0.1em] text-[var(--color-accent-cyan)]">
               {item.period}
             </p>
-            <h4
-              className={`mt-0.5 font-[family-name:var(--font-display)] font-semibold tracking-tight text-[var(--color-on-surface)] ${isHero ? "text-lg shadow-[0_0_16px_var(--color-accent-cyan)_25%]" : "text-sm"}`}
-            >
+            <h4 className="mt-0.5 font-[family-name:var(--font-display)] text-sm font-semibold tracking-tight text-[var(--color-on-surface)]">
               {item.title}
             </h4>
             <p className="font-[family-name:var(--font-body)] text-xs text-[var(--color-on-surface-muted)]">
