@@ -18,10 +18,20 @@ const EdgeLine = memo(function EdgeLine({
 }) {
   // biome-ignore lint/suspicious/noExplicitAny: drei Line ref types are complex
   const baseRef = useRef<any>(null);
+  // biome-ignore lint/suspicious/noExplicitAny: drei Line ref types are complex
+  const glowRef = useRef<any>(null);
+  const glowProgressRef = useRef(0);
 
   useFrame((_, delta) => {
     if (baseRef.current) {
       baseRef.current.material.dashOffset -= delta * 0.25;
+    }
+    const target = isActive ? 1 : 0;
+    glowProgressRef.current +=
+      (target - glowProgressRef.current) * Math.min(delta * 2.5, 1);
+    if (glowRef.current) {
+      glowRef.current.material.opacity = glowProgressRef.current * 0.65;
+      glowRef.current.material.dashSize = glowProgressRef.current * 5;
     }
   });
 
@@ -39,14 +49,15 @@ const EdgeLine = memo(function EdgeLine({
         gapSize={0.08}
       />
       <Line
+        ref={glowRef}
         points={[from, to]}
         color="#7df4ff"
         lineWidth={2.4}
         transparent
-        opacity={isActive ? 0.65 : 0}
+        opacity={0}
         dashed
-        dashSize={99}
-        gapSize={0}
+        dashSize={0}
+        gapSize={99}
       />
     </>
   );
