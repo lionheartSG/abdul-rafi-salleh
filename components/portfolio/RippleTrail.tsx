@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 const MAX_RIPPLES = 30;
 const RIPPLE_INTERVAL = 50;
+const TOUCH_BURST = 6;
 const MAX_RADIUS = 140;
 const LINE_WIDTH = 1.6;
 
@@ -17,13 +18,33 @@ type Ripple = {
 export function RippleTrail() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -100, y: -100 });
+  const isTouchRef = useRef(false);
+  const touchSpawnedRef = useRef(false);
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
+      if (isTouchRef.current) return;
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
+    const onTouchStart = (e: TouchEvent) => {
+      isTouchRef.current = true;
+      touchSpawnedRef.current = false;
+      const t = e.touches[0];
+      mouseRef.current = { x: t.clientX, y: t.clientY };
+    };
+    const onTouchEnd = () => {
+      isTouchRef.current = false;
+      mouseRef.current = { x: -100, y: -100 };
+    };
+
     window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
   }, []);
 
   useEffect(() => {
@@ -47,9 +68,19 @@ export function RippleTrail() {
       frame = requestAnimationFrame(animate);
 
       const { x, y } = mouseRef.current;
-      if (x > 0 && y > 0 && time - lastSpawn >= RIPPLE_INTERVAL) {
-        ripples.push({ x, y, radius: 0, alpha: 0.4 });
-        lastSpawn = time;
+
+      if (x > 0 && y > 0) {
+        if (isTouchRef.current) {
+          if (!touchSpawnedRef.current) {
+            for (let i = 0; i < TOUCH_BURST; i++) {
+              ripples.push({ x, y, radius: i * 4, alpha: 0.4 });
+            }
+            touchSpawnedRef.current = true;
+          }
+        } else if (time - lastSpawn >= RIPPLE_INTERVAL) {
+          ripples.push({ x, y, radius: 0, alpha: 0.4 });
+          lastSpawn = time;
+        }
       }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
