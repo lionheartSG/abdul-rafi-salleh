@@ -17,10 +17,15 @@ export function MainHubNode({
   hitRadius = 0.52,
   distanceFactor = 7.2,
 }: MainHubNodeProps) {
-  const { setHoveredNodeId, setSelectedNodeId, setFocusedNodeId } =
-    usePortfolioHover();
+  const {
+    hoveredNodeId,
+    setHoveredNodeId,
+    setSelectedNodeId,
+    setFocusedNodeId,
+  } = usePortfolioHover();
   const [imgFailed, setImgFailed] = useState(false);
   const avatarSrc = node.avatarSrc ?? "/main-hub-avatar.png";
+  const isHovered = hoveredNodeId === node.id;
 
   return (
     <group position={node.position}>
@@ -52,7 +57,16 @@ export function MainHubNode({
           zIndexRange={[100, 100]}
         >
           <div className="flex w-max flex-col items-center">
-            <div className="main-hub-disc relative">
+            <div
+              className="main-hub-disc relative"
+              style={{
+                transform: isHovered ? "scale(1.06)" : "scale(1)",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                boxShadow: isHovered
+                  ? "0 0 0 1px color-mix(in srgb, #00f0ff 80%, transparent), 0 0 48px color-mix(in srgb, #00f0ff 60%, transparent), 0 0 72px color-mix(in srgb, #5eead4 30%, transparent)"
+                  : undefined,
+              }}
+            >
               {!imgFailed ? (
                 <Image
                   src={avatarSrc}

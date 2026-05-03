@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Skills", nodeId: "skills-profile" },
   { label: "Career", nodeId: "journey" },
   { label: "Education", nodeId: "education" },
+  { label: "Contact", nodeId: "contact" },
 ];
 
 export function NavBar() {

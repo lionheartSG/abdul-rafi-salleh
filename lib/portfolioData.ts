@@ -575,6 +575,34 @@ export const portfolioNodes: PortfolioNode[] = [
     ],
   },
   {
+    id: "contact",
+    label: "Get in Touch",
+    shortLabel: "Contact",
+    description:
+      "Open to consulting, advisory, and collaboration opportunities. Reach out via email or connect on LinkedIn and GitHub.",
+    chips: [],
+    position: [3.0, -1.8, -1.2],
+    accent: "green",
+    caption: "Let's build something meaningful.",
+    content: [
+      {
+        kind: "metric",
+        label: "Email",
+        value: "✉",
+      },
+      {
+        kind: "metric",
+        label: "LinkedIn",
+        value: "in",
+      },
+      {
+        kind: "metric",
+        label: "GitHub",
+        value: "⌥",
+      },
+    ],
+  },
+  {
     id: "skills-profile",
     label: "Skills & Expertise",
     shortLabel: "Skills",

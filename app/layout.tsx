@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://abdul-rafi-salleh.vercel.app"),
   title: "Abdul Rafi Salleh · Ops-Tech Lead",
   description:
     "Ops-Tech Lead bridging security operations and digital systems. 20 years across law enforcement, aviation security, and fullstack engineering.",
