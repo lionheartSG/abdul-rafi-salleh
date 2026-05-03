@@ -151,14 +151,14 @@ function SceneContent() {
           fade
           speed={0.35}
         />
-
-        <ConnectionLines />
-
-        {center ? <MainHubNode node={center} /> : null}
-        {satellites.map((n) => (
-          <SatelliteNode key={n.id} node={n} />
-        ))}
       </ParallaxRoot>
+
+      <ConnectionLines />
+
+      {center ? <MainHubNode node={center} /> : null}
+      {satellites.map((n) => (
+        <SatelliteNode key={n.id} node={n} />
+      ))}
 
       <CameraController />
     </>

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { CustomCursor } from "./CustomCursor";
 import { DetailPanel } from "./DetailPanel";
+import { LoadingScreen } from "./LoadingScreen";
 import { NodePopup } from "./NodePopup";
 import {
   PortfolioHoverProvider,
@@ -14,15 +15,7 @@ import { SpaceBackground } from "./SpaceBackground";
 
 const NodeScene = dynamic(() => import("./NodeScene"), {
   ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-[var(--color-bg-deep)]">
-      <div className="h-3 w-3 animate-pulse rounded-full bg-[var(--color-accent-cyan)] shadow-[0_0_20px_var(--color-accent-cyan)]" />
-      <p className="font-[family-name:var(--font-body)] text-sm text-[var(--color-on-surface-muted)]">
-        Initializing nexus
-        <span className="animate-pulse">...</span>
-      </p>
-    </div>
-  ),
+  loading: () => <LoadingScreen />,
 });
 
 function ExperienceInner() {

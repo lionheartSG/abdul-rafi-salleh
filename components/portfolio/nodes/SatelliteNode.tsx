@@ -21,10 +21,15 @@ export function SatelliteNode({
 }: SatelliteNodeProps) {
   const groupRef = useRef<Group>(null);
   const floatRef = useRef<Group>(null);
-  const { setHoveredNodeId, setSelectedNodeId, setFocusedNodeId } =
-    usePortfolioHover();
+  const {
+    hoveredNodeId,
+    setHoveredNodeId,
+    setSelectedNodeId,
+    setFocusedNodeId,
+  } = usePortfolioHover();
   const accent = node.accent ?? "cyan";
   const borderColor = accentSphereStyle[accent].ring;
+  const isHovered = hoveredNodeId === node.id;
   const caption =
     node.caption ?? "Replace with your own summary for this capability area.";
 
@@ -71,7 +76,14 @@ export function SatelliteNode({
                 className="satellite-disc"
                 style={
                   {
-                    "--satellite-border": borderColor,
+                    "--satellite-border": isHovered
+                      ? accentSphereStyle[accent].iconColor
+                      : borderColor,
+                    transform: isHovered ? "scale(1.12)" : "scale(1)",
+                    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                    boxShadow: isHovered
+                      ? `0 0 18px ${accentSphereStyle[accent].ring}, 0 0 36px ${accentSphereStyle[accent].ring}44`
+                      : "none",
                   } as CSSProperties
                 }
               />
